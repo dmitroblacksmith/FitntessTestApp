@@ -5,6 +5,7 @@ namespace FitnessTestApp.BLL.Model
     /// <summary>
     /// Пол.
     /// </summary>
+    [Serializable]
     public class Gender
     {
         /// <summary>
