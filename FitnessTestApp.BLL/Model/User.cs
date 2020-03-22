@@ -17,12 +17,12 @@ namespace FitnessTestApp.BLL.Model
         /// <summary>
         /// Пол.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set;  }
 
         /// <summary>
         /// Вес.
@@ -33,6 +33,11 @@ namespace FitnessTestApp.BLL.Model
         /// Рост.
         /// </summary>
         public double Height { get; set; }
+
+        public int Age
+        {
+            get { return DateTime.Now.Year - BirthDate.Year; }
+        }
         #endregion
 
         /// <summary>
@@ -77,6 +82,20 @@ namespace FitnessTestApp.BLL.Model
             BirthDate = birthDate;
             Weight = weight;
             Height = height;
+        }
+
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Имя пользователя не может быть пустым или null", nameof(name));
+            }
+            Name = name;
+        }
+
+        public override string ToString()
+        {
+            return Name + " " + Age;
         }
     }
 }
