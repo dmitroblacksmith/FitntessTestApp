@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTestApp.BLL", "FitnessTestApp.BLL\FitnessTestApp.BLL.csproj", "{18800C31-7D8E-4737-B64B-E78A1C602101}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTestApp.BLL", "FitnessTestApp.BLL\FitnessTestApp.BLL.csproj", "{18800C31-7D8E-4737-B64B-E78A1C602101}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTestApp.CLI", "FitnessTestApp.CLI\FitnessTestApp.CLI.csproj", "{AFB8D401-21AA-4A38-83F7-C7B05C8E78EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessTestApp.CLI", "FitnessTestApp.CLI\FitnessTestApp.CLI.csproj", "{AFB8D401-21AA-4A38-83F7-C7B05C8E78EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTestApp.BLLTests", "FitnessTestApp.BLLTests\FitnessTestApp.BLLTests.csproj", "{89F19005-4B6A-4CC6-918C-553A56A162AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AFB8D401-21AA-4A38-83F7-C7B05C8E78EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFB8D401-21AA-4A38-83F7-C7B05C8E78EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFB8D401-21AA-4A38-83F7-C7B05C8E78EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89F19005-4B6A-4CC6-918C-553A56A162AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89F19005-4B6A-4CC6-918C-553A56A162AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89F19005-4B6A-4CC6-918C-553A56A162AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89F19005-4B6A-4CC6-918C-553A56A162AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
