@@ -14,7 +14,8 @@ namespace FitnessTestApp.CLI
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
-            if(userController.IsNewUser)
+            var mealController = new MealController(userController.CurrentUser);
+            if (userController.IsNewUser)
             {
                 Console.Write("Введите пол: ");
                 var genderName = Console.ReadLine();
@@ -25,7 +26,44 @@ namespace FitnessTestApp.CLI
                 userController.SetNewUserData(genderName, birthDate, weight, height);
             }
             Console.WriteLine(userController.CurrentUser);
+
+            Console.WriteLine("Что вы хотите сделать?");
+            Console.WriteLine("M - ввести прием пищи");
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key == ConsoleKey.M)
+            {
+                var food = EnterMeal();
+                mealController.Add(food.Food, food.Weight);
+
+                foreach( var item in mealController.Meal.Foods)
+                {
+                    Console.WriteLine($"\t{item.Key} - {item.Value}");
+                }
+            }
+
+
             Console.ReadLine();
+        }
+
+        private static (Food Food, double Weight) EnterMeal()
+        {
+            Console.Write("Введите имя продукта:");
+            var product = Console.ReadLine();
+
+            var calories = ParseDouble("калорийность");
+
+            var proteins = ParseDouble("белки");
+
+            var fats = ParseDouble("жиры");
+
+            var carbs = ParseDouble("углеводы");
+
+            var weight = ParseDouble("вес порции");
+            var food = new Food(product, calories, proteins, fats, carbs);
+
+            return (Food: food, Weight: weight);
         }
 
         private static double ParseDouble(string name)
@@ -39,7 +77,7 @@ namespace FitnessTestApp.CLI
                 }
                 else
                 {
-                    Console.WriteLine($"Неверный формат {name}");
+                    Console.WriteLine($"Неверный формат поля {name}");
                 }
             }
         }
