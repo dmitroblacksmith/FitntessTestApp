@@ -20,11 +20,12 @@ namespace FitnessTestApp.CLI
 
             var userController = new UserController(name);
             var mealController = new MealController(userController.CurrentUser);
+            var exerciseController = new ExerciseController(userController.CurrentUser);
             if (userController.IsNewUser)
             {
                 Console.Write(resourceManager.GetString("EnterGender", culture));
                 var genderName = Console.ReadLine();
-                var birthDate = ParseDateTime();
+                var birthDate = ParseDateTime("дата рождения");
                 var weight = ParseDouble("вес");
                 var height = ParseDouble("рост");
 
@@ -32,24 +33,59 @@ namespace FitnessTestApp.CLI
             }
             Console.WriteLine(userController.CurrentUser);
 
-            Console.WriteLine("Что вы хотите сделать?");
-            Console.WriteLine("M - ввести прием пищи");
-            var key = Console.ReadKey();
-            Console.WriteLine();
-
-            if (key.Key == ConsoleKey.M)
+            while (true)
             {
-                var food = EnterMeal();
-                mealController.Add(food.Food, food.Weight);
+                Console.WriteLine("Что вы хотите сделать?");
+                Console.WriteLine("M - ввести прием пищи");
+                Console.WriteLine("A - ввести упражнение");
+                Console.WriteLine("Q - выход");
+                var key = Console.ReadKey();
+                Console.WriteLine();
 
-                foreach( var item in mealController.Meal.Foods)
+
+                switch (key.Key)
                 {
-                    Console.WriteLine($"\t{item.Key} - {item.Value}");
+                    case ConsoleKey.M:
+                        var food = EnterMeal();
+                        mealController.Add(food.Food, food.Weight);
+
+                        foreach (var item in mealController.Meal.Foods)
+                        {
+                            Console.WriteLine($"\t{item.Key} - {item.Value}");
+                        }
+
+                        break;
+                    case ConsoleKey.A:
+                        var exercise = EnterExercise();
+                        exerciseController.Add(exercise.Activity, exercise.Start, exercise.Finish);
+
+                        foreach(var item in exerciseController.Exercises)
+                        {
+                            Console.WriteLine($"\t{item.Activity.Name} c {item.Start.ToShortTimeString()} до {item.Finish.ToShortTimeString()}");
+                        }
+
+                        break;
+                    case ConsoleKey.Q:
+                        Environment.Exit(0);
+                        break;
                 }
+
+                Console.ReadLine();
             }
+        }
 
+        private static (DateTime Start, DateTime Finish, Activity Activity) EnterExercise()
+        {
+            Console.Write("Введите название упражнения: ");
+            var name = Console.ReadLine();
 
-            Console.ReadLine();
+            var energy = ParseDouble("расход энергии в минуту");
+
+            var start = ParseDateTime("начало упражнения");
+            var finish = ParseDateTime("окончание упражнения");
+
+            var activity = new Activity(name, energy);
+            return (Start: start, Finish: finish, Activity: activity);
         }
 
         private static (Food Food, double Weight) EnterMeal()
@@ -87,18 +123,18 @@ namespace FitnessTestApp.CLI
             }
         }
 
-        private static DateTime ParseDateTime()
+        private static DateTime ParseDateTime(string value)
         {
             while (true)
             {
-                Console.Write("Введите дату рождения (dd.MM.yyyy): ");
-                if (DateTime.TryParse(Console.ReadLine(), out DateTime birthDate))
+                Console.Write($"Введите {value} (dd.MM.yyyy): ");
+                if (DateTime.TryParse(Console.ReadLine(), out DateTime date))
                 {
-                    return birthDate;
+                    return date;
                 }
                 else
                 {
-                    Console.WriteLine("Неверный формат даты рождения");
+                    Console.WriteLine($"Неверный формат поля {value}");
                 }
             }
         }
