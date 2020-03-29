@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Resources;
 using FitnessTestApp.BLL.Controller;
 using FitnessTestApp.BLL.Model;
 
@@ -8,16 +10,19 @@ namespace FitnessTestApp.CLI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Вас приветствует приложение FintessTestApp");
+            var culture = CultureInfo.CreateSpecificCulture("ru-ru");
+            var resourceManager = new ResourceManager("FitnessTestApp.CLI.Languages.Messages", typeof(Program).Assembly);
 
-            Console.Write("Введите имя пользователя: ");
+            Console.WriteLine(resourceManager.GetString("Hello", culture));
+
+            Console.Write(resourceManager.GetString("EnterName", culture));
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
             var mealController = new MealController(userController.CurrentUser);
             if (userController.IsNewUser)
             {
-                Console.Write("Введите пол: ");
+                Console.Write(resourceManager.GetString("EnterGender", culture));
                 var genderName = Console.ReadLine();
                 var birthDate = ParseDateTime();
                 var weight = ParseDouble("вес");
