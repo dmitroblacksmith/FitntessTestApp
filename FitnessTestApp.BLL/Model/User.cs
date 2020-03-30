@@ -8,11 +8,12 @@ namespace FitnessTestApp.BLL.Model
     [Serializable]
     public class User
     {
+
         #region Свойства
         /// <summary>
         /// Имя.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Пол.

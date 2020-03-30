@@ -10,10 +10,10 @@ namespace FitnessTestApp.BLL.Model
     [Serializable]
     public class Meal
     {
-        public DateTime Moment { get; }
+        public DateTime Moment { get; set; }
         public Dictionary<Food, double> Foods { get; set; }
+        public virtual User User { get; set; }
 
-        public User User { get; }
         public Meal(User user)
         {
             User = user ?? throw new ArgumentNullException("Пользователь не может быть пустым", nameof(user));

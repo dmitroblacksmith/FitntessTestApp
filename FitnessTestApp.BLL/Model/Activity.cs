@@ -5,9 +5,8 @@ namespace FitnessTestApp.BLL.Model
     [Serializable]
     public class Activity
     {
-        public string Name { get; }
-
-        public double CalloriesPerMinute { get; }
+        public string Name { get; set;  }
+        public double CalloriesPerMinute { get; set; }
 
         public Activity(string name, double calloriesPerMinute)
         {

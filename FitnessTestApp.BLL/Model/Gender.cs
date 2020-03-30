@@ -8,10 +8,11 @@ namespace FitnessTestApp.BLL.Model
     [Serializable]
     public class Gender
     {
+
         /// <summary>
         /// Название.
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Создать новый пол.

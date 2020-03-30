@@ -5,13 +5,10 @@ namespace FitnessTestApp.BLL.Model
     [Serializable]
     public class Exercise
     {
-        public DateTime Start { get; }
-        
-        public DateTime Finish { get; }
-
-        public Activity Activity { get; }
-
-        public User User { get; }
+        public DateTime Start { get; set; }
+        public DateTime Finish { get; set; }
+        public virtual Activity Activity { get; set; }
+        public virtual User User { get; set; }
 
         public Exercise(DateTime start, DateTime finish, Activity activity, User user)
         {
