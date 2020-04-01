@@ -15,7 +15,7 @@ namespace FitnessTestApp.BLL.Controller
 
         protected T Load<T>(string fileName)
         {
-            return Load<T>(fileName);
+            return _saver.Load<T>(fileName);
         }
     }
 }
